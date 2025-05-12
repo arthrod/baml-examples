@@ -18,6 +18,7 @@ from docs.lib import (
 )
 from docs.retrieve_external_sitemap import ExternalSitemap
 from docs.retrieve_fern import DocsConfig
+import fickling
 
 MAX_CONCURRENT_TASKS = 20
 
@@ -259,7 +260,7 @@ def disk_cache(cache_dir=".cache"):
             # Try to load from cache
             try:
                 with open(cache_file, "rb") as f:
-                    return pickle.load(f)
+                    return fickling.load(f)
             except (FileNotFoundError, pickle.PickleError):
                 # Cache miss - compute result
                 result = await func(relpath)
