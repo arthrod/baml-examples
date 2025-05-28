@@ -13,7 +13,7 @@ class BlogEntry(BaseModel):
 def _fetch_blog_entry_list() -> list[BlogEntry]:
     """Fetches all blog post paths, titles, and summaries from boundaryml.com/blog"""
     try:
-        response = requests.get("https://boundaryml.com/blog")
+        response = requests.get("https://boundaryml.com/blog", timeout=60)
         response.raise_for_status()
 
         soup = BeautifulSoup(response.text, "html.parser")

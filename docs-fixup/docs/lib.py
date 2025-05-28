@@ -104,7 +104,7 @@ async def process_file(
         if link_dest not in allowed_link_dests:
             if link_dest.startswith("https://"):
                 try:
-                    resp = requests.get(link_dest)
+                    resp = requests.get(link_dest, timeout=60)
                 except Exception:
                     resp = None
                     llm_suggestions.append(

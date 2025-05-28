@@ -107,7 +107,7 @@ def fetch_github_issues() -> list[Issue]:
     state = "all"
 
     # TODO: Bearer token for private repos.
-    response = requests.get(f"{url}?state={state}&per_page={per_page}")
+    response = requests.get(f"{url}?state={state}&per_page={per_page}", timeout=60)
     response.raise_for_status()
 
     issues = []
