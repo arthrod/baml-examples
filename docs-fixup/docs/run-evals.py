@@ -1,6 +1,5 @@
 import asyncio
 import json
-import random
 import re
 
 from pygments import highlight
@@ -10,6 +9,7 @@ from pygments.lexers import DiffLexer
 from docs.lib import process_file
 from docs.retrieve_external_sitemap import ExternalSitemap
 from docs.retrieve_fern import DocsConfig
+import secrets
 
 DOCS_PATH = "/Users/sam/baml2/fern"
 
@@ -19,7 +19,7 @@ EVAL_COUNT = 10
 # Number of concurrent LLM calls allowed during evals
 MAX_CONCURRENT_TASKS = 10
 
-random.seed(123123)
+secrets.SystemRandom().seed(123123)
 
 
 async def main():
@@ -34,7 +34,7 @@ async def main():
 
     all_relpaths = docs_config.list_docs_relpaths()
     all_relpaths.remove("pages/changelog.mdx")
-    selected_paths = random.sample(all_relpaths, min(EVAL_COUNT, len(all_relpaths)))
+    selected_paths = secrets.SystemRandom().sample(all_relpaths, min(EVAL_COUNT, len(all_relpaths)))
     selected_paths = [
         # "01-guide/04-baml-basics/switching-llms.mdx",
         # "01-guide/06-prompt-engineering/tools.mdx",
