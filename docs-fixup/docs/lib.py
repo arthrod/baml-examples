@@ -1,7 +1,5 @@
 import difflib
 from typing import Optional
-
-import requests
 from pydantic import BaseModel
 from pygments import highlight
 from pygments.formatters import TerminalFormatter
@@ -9,6 +7,7 @@ from pygments.lexers import DiffLexer
 
 from docs.baml_client import b
 from docs.baml_client.types import LinkSuggestion, LocalLinkDest, OtherLinkDest
+from security import safe_requests
 
 
 def _link_suggestion_to_dest(link: LinkSuggestion) -> str:
@@ -104,7 +103,7 @@ async def process_file(
         if link_dest not in allowed_link_dests:
             if link_dest.startswith("https://"):
                 try:
-                    resp = requests.get(link_dest)
+                    resp = safe_requests.get(link_dest)
                 except Exception:
                     resp = None
                     llm_suggestions.append(

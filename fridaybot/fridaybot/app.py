@@ -6,9 +6,9 @@ from datetime import datetime
 from typing import Optional
 
 import discord
-import requests
 from dotenv import load_dotenv
 from notion_client import AsyncClient
+from security import safe_requests
 
 load_dotenv()
 
@@ -107,7 +107,7 @@ def fetch_github_issues() -> list[Issue]:
     state = "all"
 
     # TODO: Bearer token for private repos.
-    response = requests.get(f"{url}?state={state}&per_page={per_page}")
+    response = safe_requests.get(f"{url}?state={state}&per_page={per_page}")
     response.raise_for_status()
 
     issues = []
