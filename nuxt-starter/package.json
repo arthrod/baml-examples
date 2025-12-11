@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@boundaryml/baml": "^0.54.0",
-    "nuxt": "^3.13.0",
+    "nuxt": "^3.20.1",
     "vue": "latest"
   }
 }
