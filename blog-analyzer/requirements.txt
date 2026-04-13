@@ -50,7 +50,7 @@ pandas==2.2.3
 parso==0.8.4
 pdf2image==1.17.0
 pexpect==4.9.0
-pillow==10.4.0
+pillow==12.2.0
 platformdirs==4.3.3
 prompt_toolkit==3.0.47
 psutil==6.0.0
